@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+
+
+
+
+    <ion-title>
+      {{item.from}}
+    </ion-title>
+
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding class="backcolor">
+
+
+  <ion-card>
+<ion-item>
+    <ion-avatar item-left>
+      <img src="{{item.img}}">
+    </ion-avatar>
+    <h2>{{item.from}}</h2>
+    <p>管理员1</p>
+</ion-item>
+  <ion-card-content>
+    {{item.text}}
+  </ion-card-content>
+</ion-card>
+
+
+</ion-content>
+
+<ion-footer class='mes'>
+
+  <ion-item>
+      <ion-input type="text" value=""></ion-input>
+    </ion-item>
+  <button ion-button> <ion-icon name="send"></ion-icon></button>
+
+</ion-footer>

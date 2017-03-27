@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    <ion-title>消息</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<ion-list>
+  <ion-item *ngFor="let message of messages" (click)="openMessage($event,message)">
+    <ion-avatar item-left>
+      <img src="{{message.img}}">
+    </ion-avatar>
+    <h2>{{message.from}}</h2>
+    <p>{{message.text}}</p>
+  </ion-item>
+
+</ion-list>
+</ion-content>

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    <ion-title>社团</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover()">
+	    <ion-icon name="add"></ion-icon>
+	  </button>
+    </ion-buttons>
+
+
+  </ion-navbar>
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="friends">
+      <ion-segment-button value="all">
+        特别关注
+      </ion-segment-button>
+      <ion-segment-button value="favorite">
+        我管理的
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+  <div [ngSwitch]="friends">
+    <ion-list *ngSwitchCase="'all'">
+      <ion-item-sliding *ngFor="let contact of contacts">
+        <ion-item (press)="hold($event,contact)" (click)="itemClick($event,contact)">
+          <ion-avatar item-left>
+            <img src="assets/images/{{contact.contactid}}.jpg">
+          </ion-avatar>
+          <h2>{{contact.contactname}}</h2>
+          <p>{{contact.contacttext}}</p>
+        </ion-item>
+
+        <ion-item-options>
+          <button ion-button color="danger" (click)="removeContact(contact)">
+        <ion-icon name="trash"></ion-icon>取消关注</button>
+        </ion-item-options>
+
+
+      </ion-item-sliding>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'favorite'">
+
+        <ion-item *ngFor="let contact of favorites" (click)="openManagePage($event,contact)">
+          <ion-avatar item-left>
+            <img src="assets/images/{{contact.contactid}}.jpg">
+          </ion-avatar>
+          <h2>{{contact.contactname}}</h2>
+          <p>{{contact.contacttext}}</p>
+        </ion-item>
+
+    </ion-list>
+  </div>
+</ion-content>

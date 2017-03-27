@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle icon-only>
+        <ion-icon name='menu'></ion-icon>
+      </button>
+    <ion-title>海报栏</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let passage of passages">
+    <ion-item>
+      <ion-avatar item-left (click)=openHomepage()>
+        <img src="{{passage.pimg}}">
+      </ion-avatar>
+      <h2 (click)=openHomepage()>{{passage.author}}</h2>
+      <p>来自{{passage.from}}</p>
+    </ion-item>
+    <img src="{{passage.img}}" (click)="openDetail($event,passage)">
+
+    <ion-card-content class="nowarp">
+      <p>{{passage.content}}</p>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>{{passage.feelgood}} 赞</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>{{passage.comment}} 评论</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <ion-note>
+          {{passage.time}} ago
+        </ion-note>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+  <ion-infinite-scroll-content loadingText="正在加载更多"></ion-infinite-scroll-content>
+</ion-infinite-scroll>
+
+
+</ion-content>
